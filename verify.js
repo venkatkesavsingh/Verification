@@ -35,6 +35,13 @@ const params = new URLSearchParams(window.location.search);
 const teamId = params.get("teamId");
 const playerId = params.get("player");
 
+// 🔒 VERIFICATION MODE
+if (verifyTeamId && verifyPlayerId) {
+  runVerification(verifyTeamId, verifyPlayerId);
+  // stop rest of the page from executing
+  throw new Error("Verification mode");
+}
+
 /* ===============================
    VALIDATION
 ================================ */
@@ -93,6 +100,7 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
 
 
 
