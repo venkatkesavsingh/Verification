@@ -32,15 +32,9 @@ const messageEl = document.getElementById("message");
    READ URL PARAMS
 =============================== */
 const params = new URLSearchParams(window.location.search);
-// allow overrides from debug globals by making these `let`
 let teamId = params.get("teamId");
-// support both "player" and "playerId" query params (prefer "player")
-let playerId = params.get("player") || params.get("playerId");
+let playerId = params.get("playerId");
 
-/* Optional debug / verification override:
-   If you set `verifyTeamId` and `verifyPlayerId` from the console
-   (or as global vars in a test page), use them without throwing.
-*/
 if (typeof verifyTeamId !== "undefined" && typeof verifyPlayerId !== "undefined") {
   teamId = verifyTeamId;
   playerId = verifyPlayerId;
@@ -105,3 +99,4 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
