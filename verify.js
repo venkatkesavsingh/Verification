@@ -31,7 +31,7 @@ const messageEl = document.getElementById("message");
 /* ===============================
    READ URL PARAMS
 ================================ */
-const params = new URLSearchParams(venkatkesavsingh.github.io/Verification/);
+const params = new URLSearchParams(window.location.search);
 const teamId = params.get("teamId");
 const playerId = params.get("player");
 
