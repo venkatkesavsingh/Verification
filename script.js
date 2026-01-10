@@ -24,27 +24,32 @@ const db = getFirestore(app);
 
 /* ===============================
    UI ELEMENTS
-================================ */
+=============================== */
 const statusEl = document.getElementById("status");
 const messageEl = document.getElementById("message");
 
 /* ===============================
    READ URL PARAMS
-================================ */
+=============================== */
 const params = new URLSearchParams(window.location.search);
-const teamId = params.get("teamId");
-const playerId = params.get("player");
+// allow overrides from debug globals by making these `let`
+let teamId = params.get("teamId");
+// support both "player" and "playerId" query params (prefer "player")
+let playerId = params.get("player") || params.get("playerId");
 
-// 🔒 VERIFICATION MODE
-if (verifyTeamId && verifyPlayerId) {
-  runVerification(verifyTeamId, verifyPlayerId);
-  // stop rest of the page from executing
-  throw new Error("Verification mode");
+/* Optional debug / verification override:
+   If you set `verifyTeamId` and `verifyPlayerId` from the console
+   (or as global vars in a test page), use them without throwing.
+*/
+if (typeof verifyTeamId !== "undefined" && typeof verifyPlayerId !== "undefined") {
+  teamId = verifyTeamId;
+  playerId = verifyPlayerId;
+  console.log("Verification override active:", teamId, playerId);
 }
 
 /* ===============================
    VALIDATION
-================================ */
+=============================== */
 if (!teamId || !playerId) {
   statusEl.innerText = "Invalid Link";
   messageEl.innerText = "Verification link is incorrect.";
@@ -53,7 +58,7 @@ if (!teamId || !playerId) {
 
 /* ===============================
    VERIFY PLAYER
-================================ */
+=============================== */
 (async () => {
   try {
     const teamRef = doc(db, "teams", teamId);
@@ -100,7 +105,3 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
-
-
-
-
