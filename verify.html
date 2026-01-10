@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.3vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(30deg, black, red, black);
+      color: white;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2 id="status">Verifying...</h2>
+    <p id="message">Please wait</p>
+  </div>
+
+  <script type="module" src="verify.js"></script>
+</body>
+</html>
