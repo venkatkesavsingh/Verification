@@ -31,7 +31,7 @@ const messageEl = document.getElementById("message");
 /* ===============================
    READ URL PARAMS
 ================================ */
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(index.html);
 const teamId = params.get("teamId");
 const playerId = params.get("player");
 
@@ -93,3 +93,4 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
