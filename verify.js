@@ -31,7 +31,7 @@ const messageEl = document.getElementById("message");
 /* ===============================
    READ URL PARAMS
 ================================ */
-const params = new URLSearchParams(index.html);
+const params = new URLSearchParams(venkatkesavsingh.github.io/Verification/);
 const teamId = params.get("teamId");
 const playerId = params.get("player");
 
@@ -93,4 +93,5 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
 
