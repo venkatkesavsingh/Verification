@@ -72,6 +72,13 @@ if (!teamId || !playerId) {
       return;
     }
 
+    if (teamData.anyPlayerVerified === true) {
+      statusEl.innerText = "Already Verified";
+      messageEl.innerText = "This team is already verified.";
+      return;
+    }
+
+
     const playerRef = doc(db, "teams", teamId, "players", playerId);
     const playerSnap = await getDoc(playerRef);
 
@@ -87,8 +94,12 @@ if (!teamId || !playerId) {
     });
 
     await updateDoc(teamRef, {
-      anyPlayerVerified: true
+      anyPlayerVerified: true,
+      verifiedBy: playerId,          // ✅ WHO verified
+      verificationOpen: false,       // ✅ lock verification
+      verifiedAt: serverTimestamp()  // ✅ optional but recommended
     });
+
 
     statusEl.innerText = "Verified Successfully ✅";
     messageEl.innerText = "You can close this page.";
@@ -99,4 +110,5 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
 
