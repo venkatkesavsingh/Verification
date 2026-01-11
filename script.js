@@ -78,7 +78,6 @@ if (!teamId || !playerId) {
       return;
     }
 
-
     const playerRef = doc(db, "teams", teamId, "players", playerId);
     const playerSnap = await getDoc(playerRef);
 
@@ -110,5 +109,6 @@ if (!teamId || !playerId) {
     messageEl.innerText = "Something went wrong.";
   }
 })();
+
 
 
